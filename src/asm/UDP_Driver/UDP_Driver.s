@@ -136,15 +136,16 @@ tx:
     li a7, 206     # Set the system call number for sendto
     la a1, t1             # Set the buffer address to the packet data
     mv a2, t2           # Set the buffer size to the packet length
-    li a3, 0              # Set the flags to zero (no special behavior)
+    li a3, 0             # Set the flags to zero (no special behavior)
     la a4, (sp)           # Set the address of the destination sockaddr_in structure
     li a5, 16             # Set the length of the destination sockaddr_in structure
     ecall                 # Call the sendto system call to transmit the packet
     
     # Free the skb
-    li a7, SYS_munmap  # Set the system call number for munmap
+    li a7, 215  # Set the system call number for munmap
     la a0, t1          # Set the address of the buffer to free
     mv a1, t2        # Set the length
+    ecall
 
 
 
